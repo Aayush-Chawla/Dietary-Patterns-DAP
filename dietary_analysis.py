@@ -992,13 +992,15 @@ def main():
         bmi_corr_df = pd.DataFrame(list(bmi_correlations.items()), columns=['Factor', 'Correlation'])
         st.dataframe(bmi_corr_df)
         
-        # Display bar charts
-        fig = px.bar(health_corr_df, x='Factor', y='Correlation',
-                   title='Factors Correlated with Health Score')
-        st.plotly_chart(fig, use_container_width=True, key="health_corr_bar")
+        # # Display bar charts
+        # fig = px.bar(health_corr_df, x='Factor', y='Correlation',
+        #            title='Factors Correlated with Health Score')
+        # st.plotly_chart(fig, use_container_width=True, key="health_corr_bar")
         
         fig = px.bar(bmi_corr_df, x='Factor', y='Correlation',
-                   title='Factors Correlated with BMI')
+                   title='Factors Correlated with BMI',
+                   height=500)  # Increase height to make small bars more visible
+        fig.update_traces(texttemplate='%{y:.4f}', textposition='outside')
         st.plotly_chart(fig, use_container_width=True, key="bmi_corr_bar")
         
         # Display conclusion
